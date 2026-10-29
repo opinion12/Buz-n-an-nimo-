@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5eee5">
+  <title>Buzón Anónimo | Opiniones</title>
+  <style>
+    :root {
+      --cream: #fbf8f3;
+      --beige: #ead8c1;
+      --beige-deep: #c8a77d;
+      --ink: #332b24;
+      --muted: #6f665e;
+      --line: #e8ded2;
+      --white: #fffefa;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% 5%, rgba(234,216,193,.45), transparent 23rem),
+        var(--cream);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+    .page { width: min(900px, calc(100% - 32px)); margin: 0 auto; padding: 48px 0 30px; }
+    header { text-align: center; margin-bottom: 30px; }
+    .icon {
+      display: inline-grid; place-items: center; width: 76px; height: 76px;
+      border: 1px solid var(--beige-deep); border-radius: 50%;
+      color: #9c784e; font-size: 32px; margin-bottom: 15px;
+      background: rgba(255,254,250,.75);
+    }
+    h1 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: clamp(2.6rem, 8vw, 4.5rem);
+      line-height: 1.08; font-weight: 400; margin: 0;
+      letter-spacing: -1.5px;
+    }
+    .divider { color: var(--beige-deep); letter-spacing: 7px; margin: 17px 0; }
+    .intro { max-width: 630px; margin: 0 auto; color: var(--muted); font-size: 1.08rem; }
+    .card {
+      background: rgba(255,254,250,.94); border: 1px solid var(--line);
+      border-radius: 24px; padding: clamp(22px, 5vw, 44px);
+      box-shadow: 0 12px 35px rgba(76, 57, 38, .06);
+    }
+    .card h2 { text-align: center; font-size: 1.45rem; margin: 0 0 4px; }
+    .sub { text-align: center; color: var(--muted); margin: 0 0 25px; }
+    label { display: block; font-weight: 600; margin-bottom: 9px; }
+    textarea {
+      display: block; width: 100%; min-height: 210px; resize: vertical;
+      border: 1px solid #ddd0c1; border-radius: 12px; padding: 16px;
+      background: #fffefa; color: var(--ink); font: inherit; font-size: 1rem;
+      outline: none; transition: border-color .2s, box-shadow .2s;
+    }
+    textarea:focus { border-color: var(--beige-deep); box-shadow: 0 0 0 3px rgba(200,167,125,.18); }
+    textarea::placeholder { color: #9a9188; }
+    .privacy { text-align: center; color: var(--muted); font-size: .93rem; margin: 16px 0 22px; }
+    button {
+      width: 100%; border: 0; border-radius: 12px; padding: 15px 20px;
+      background: linear-gradient(135deg, #d8bd9c, #c8a77d); color: white;
+      font: inherit; font-weight: 700; font-size: 1.08rem; cursor: pointer;
+      transition: transform .15s, filter .15s;
+    }
+    button:hover { filter: brightness(.97); transform: translateY(-1px); }
+    button:focus-visible { outline: 3px solid #8f6c45; outline-offset: 3px; }
+    .note { text-align: center; color: var(--muted); font-size: .92rem; margin: 17px 0 0; }
+    .info {
+      margin-top: 24px; border-radius: 20px; padding: 23px 26px;
+      background: #f4ece2; display: flex; gap: 18px; align-items: center;
+    }
+    .leaf { font-size: 30px; color: #a9855b; }
+    .info strong { display: block; margin-bottom: 3px; }
+    .info p { margin: 0; color: #68513a; }
+    footer { text-align: center; color: #8b6c49; padding: 28px 0 0; }
+    .smallprint { font-size: .78rem; color: #81776d; margin-top: 22px; text-align: center; }
+    @media (max-width: 520px) {
+      .page { padding-top: 30px; }
+      .info { align-items: flex-start; padding: 19px; }
+      .leaf { font-size: 25px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <div class="icon" aria-hidden="true">♡</div>
+      <h1>Buzón Anónimo</h1>
+      <div class="divider" aria-hidden="true">──── ♡ ────</div>
+      <p class="intro">
+        Este espacio es para dejar tu opinión sobre nuestro servicio psicológico
+        de forma sincera y respetuosa. Tus comentarios pueden ayudarnos a mejorar.
+      </p>
+    </header>
+
+    <!-- El formulario usa FormSubmit para enviar el mensaje al correo indicado.
+         La primera vez, el destinatario deberá confirmar el correo de activación. -->
+    <section class="card" aria-labelledby="form-title">
+      <h2 id="form-title">Dejanos tu opinión</h2>
+      <p class="sub">No hace falta que escribas tu nombre ni tus datos personales.</p>
+
+      <form action="https://formsubmit.co/loreterrens@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="Nueva opinión anónima sobre el servicio psicológico">
+        <input type="hidden" name="_captcha" value="true">
+        <input type="hidden" name="_template" value="table">
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <label for="opinion">Tu mensaje</label>
+        <textarea id="opinion" name="Opinión" maxlength="5000" required
+          placeholder="Escribí aquí tu opinión, sugerencia o comentario..."></textarea>
+        <p class="privacy">🔒 El formulario no te pide nombre ni correo electrónico.</p>
+        <button type="submit">♡ &nbsp; Enviar opinión</button>
+        <p class="note">Gracias por tomarte un momento para compartir tu experiencia.</p>
+      </form>
+    </section>
+
+    <aside class="info">
+      <div class="leaf" aria-hidden="true">❧</div>
+      <div>
+        <strong>Tu opinión importa</strong>
+        <p>Cada comentario nos ayuda a revisar el servicio y seguir mejorando el acompañamiento.</p>
+      </div>
+    </aside>
+
+    <p class="smallprint">
+      Evitá incluir nombres, teléfonos u otros datos personales tuyos o de terceros.
+      Este formulario no es un canal de atención de urgencias ni reemplaza una consulta profesional.
+    </p>
+    <footer>♡<br>Gracias por ser parte de este espacio.</footer>
+  </main>
+</body>
+</html>
